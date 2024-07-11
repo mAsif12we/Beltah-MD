@@ -1,33 +1,55 @@
-name: Node.js CI
+let {smd  , smdJson } = require("../lib/")
+//  api_smd = "https://api-smd.onrender.com"
+// test_url = "https://terabox.com/s/1UQtc6Gz9EHQZPvYJARU7cw"
 
-on:
-  push:
-    branches:
-      - main
-  pull_request:
-    branches:
-      - main
 
-jobs:
-  build:
 
-    runs-on: ubuntu-latest
 
-    strategy:
-      matrix:
-        node-version: [20.x]
 
-    steps:
-    - name: Checkout repository
-      uses: actions/checkout@v3
+/*
+cmd({
+   name: "teraboxx",
+   desc: "downloads terabox messages",
+   category: "download",
+   use:"< url >",
+   filename: __filename,
+}
+ */
 
-    - name: Set up Node.js
-      uses: actions/setup-node@v3
-      with:
-        node-version: ${{ matrix.node-version }}
 
-    - name: Install dependencies
-      run: npm install
 
-    - name: Start application
-      run: npm start
+
+smd({
+    cmdname: "terabox",
+    alias:["tbdl","teradl"],
+    type:"downloader",
+    filename:__filename,
+    creator:"Suhail",
+    use:"[!url]",
+    info:"download terabox video/image/post!",
+}, async (m,text,{smd}) =>{
+    try{
+    let teraurl = text.split(" ")[0*0].trim()
+    if(!text || !/http/gi.test(teraurl) ) return await m.reply("_Please provide terabox url!_")
+// force=true
+await m.react('⏳')
+let data =  await smdJson(`${api_smd}/api/terabox?url=${teraurl}`) || {}
+let tera = data.response   
+        if (!data || !tera  || !tera[0]) {
+            await m.send(`*_${(data.message || `Terabox data not found!`).trim() }_*`)
+        }else { 
+            for (let i=0;i<tera.length;i++) { 
+                try{            
+                 //   if(!tera[i].resolutions) continue
+                    let tpost = tera[i].resolutions
+                    await m.bot.sendFileUrl(m.chat, tpost['Fast Download'], tpost.title, m,{},"video");
+                }catch(e){  console.log(e)   }
+            }
+        }
+        await m.sendMessage(m.jid,{react:{text:'',key:m.key,},})
+    }catch(e){await m.error(`${e}\n\ncommand: tera`,e,"*_Error sending terabox post!!!_*")}
+})
+
+
+
+// smd(tbcmd,tbcmd.function)
