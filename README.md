@@ -1,7 +1,7 @@
 <a><img src='https://i.imgur.com/LyHic3i.gif'/></a>
 ## 𝐁𝐄𝐋𝐓𝐀𝐇-𝐌𝐃 V5.0.0 𝐋𝐀𝐓𝐄𝐒𝐓
 <a><img src='https://i.imgur.com/LyHic3i.gif'/></a>
-## 𝐏𝐎𝐖𝐄𝐑𝐄𝐃 𝐁𝐘 𝐁𝐄𝐋𝐓𝐀𝐇 𝐓𝐄𝐂𝐇
+## Faisal udas love muuskan
 <a><img src='https://i.imgur.com/LyHic3i.gif'/></a>
 
 <div align="center">
